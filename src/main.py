@@ -14,7 +14,7 @@ from recommender import load_songs, recommend_songs
 
 def main() -> None:
     songs = load_songs("data/songs.csv") 
-    user_prefs = {
+    user_one = {
         "Late Night" : {
             "favorite_genre": "lofi",
             "favorite_mood": "focused",
@@ -39,11 +39,39 @@ def main() -> None:
             "likes_acoustic": True,
             }
         }
+    
+    user_two = {
+        "Road Trip" : {
+            "favorite_genre": "rock",
+            "favorite_mood": "energetic",
+            "target_energy": 0.85,
+            "target_valence": 0.60,
+            "likes_acoustic": False,
+        },
+        "Study Time" : {
+            "favorite_genre": "classical",
+            "favorite_mood": "focused",
+            "target_energy": 0.30,
+            "target_valence": 0.50,
+            "likes_acoustic": True,
+        },
+        "Party Vibes" : {
+            "favorite_genre": "hip-hop",
+            "favorite_mood": "upbeat",
+            "target_energy": 0.90,
+            "target_valence": 0.80,
+            "likes_acoustic": False,
+        }
+    }
+    users = [user_one, user_two]
 
     # Switch between profiles here
-    for preferences in user_prefs:
-        user_prefs = user_prefs[preferences]
-        recommendations = recommend_songs(user_prefs, songs, k=5)
+    for user in users:
+        print(f"User Profile: {user}")
+        for preferences in user:
+            current_preferences = user[preferences]
+            recommendations = recommend_songs(current_preferences, songs, k=3)
+            print(f"\nRecommendations for {preferences}: {recommendations}\n")
 
 
 if __name__ == "__main__":

@@ -65,7 +65,7 @@ def load_songs(csv_path: str) -> List[Dict]:
 
 
 # --- Scoring weights ---
-GENRE_WEIGHT    = 2.0   # Genre match: broadest filter, highest penalty for a miss
+GENRE_WEIGHT    = 0.5   # Genre match: broadest filter, highest penalty for a miss
 MOOD_WEIGHT     = 1.0   # Mood match: important but more flexible than genre
 ENERGY_WEIGHT   = 1.0   # Energy proximity: most differentiating numerical feature
 VALENCE_WEIGHT  = 0.5   # Valence proximity: tiebreaker nuance

@@ -19,15 +19,9 @@ Replace this paragraph with your own summary of what your version does.
 
 Explain your design in plain language.
 
-Some prompts to answer:
+When recommending songs to a user, we want to match the attributes of each song to their preference. Instead of trying to match higher/lower values to a user, we want to minimize the distance of a song's characteristics so the user will have a higher probability of liking that specific song. For example, if a user prefers a song with a hype level of 0.4, we want to find the value that is closest to 0.4, instead of trying to match a song with a general low hype level.
 
-- What features does each `Song` use in your system
-  - For example: genre, mood, energy, tempo
-- What information does your `UserProfile` store
-- How does your `Recommender` compute a score for each song
-- How do you choose which songs to recommend
-
-You can include a simple diagram or bullet list if helpful.
+The most important characteristics are the genre, mood, energy, and valence. The genre and mood allows the model to characterize songs more efficiently, as there is much less variance compared to numerical categories. The energy and valence allows the model to catch a distinction that mood alone can miss. Some songs can both be "chill," but still portray different moods, which valence measures. 
 
 ---
 

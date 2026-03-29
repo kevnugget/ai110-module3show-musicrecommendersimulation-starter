@@ -14,20 +14,36 @@ from recommender import load_songs, recommend_songs
 
 def main() -> None:
     songs = load_songs("data/songs.csv") 
+    user_prefs = {
+        "Late Night" : {
+            "favorite_genre": "lofi",
+            "favorite_mood": "focused",
+            "target_energy": 0.40,
+            "target_valence": 0.58,
+            "likes_acoustic": True,
+            }
+        ,
+        "Gym Session" : {
+            "favorite_genre": "pop",
+            "favorite_mood": "intense",
+            "target_energy": 0.92,
+            "target_valence": 0.75,
+            "likes_acoustic": False,
+            }
+        ,
+        "Sunday Morning" : {
+            "favorite_genre": "jazz",
+            "favorite_mood": "relaxed",
+            "target_energy": 0.35,
+            "target_valence": 0.70,
+            "likes_acoustic": True,
+            }
+        }
 
-    # Starter example profile
-    user_prefs = {"genre": "pop", "mood": "happy", "energy": 0.8}
-
-    recommendations = recommend_songs(user_prefs, songs, k=5)
-
-    print("\nTop recommendations:\n")
-    for rec in recommendations:
-        # You decide the structure of each returned item.
-        # A common pattern is: (song, score, explanation)
-        song, score, explanation = rec
-        print(f"{song['title']} - Score: {score:.2f}")
-        print(f"Because: {explanation}")
-        print()
+    # Switch between profiles here
+    for preferences in user_prefs:
+        user_prefs = user_prefs[preferences]
+        recommendations = recommend_songs(user_prefs, songs, k=5)
 
 
 if __name__ == "__main__":

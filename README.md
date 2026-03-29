@@ -17,11 +17,9 @@ Replace this paragraph with your own summary of what your version does.
 
 ## How The System Works
 
-Explain your design in plain language.
+Each song is scored against a user profile using four features: `genre` (+2.0 for a match), `mood` (+1.0 for a match), `energy` and `valence` (proximity score: `1 - abs(song_value - user_target)`), and an acoustic bonus (+0.5). Max score is 5.0. Songs are ranked using a min heap to return the top-k results.
 
-When recommending songs to a user, we want to match the attributes of each song to their preference. Instead of trying to match higher/lower values to a user, we want to minimize the distance of a song's characteristics so the user will have a higher probability of liking that specific song. For example, if a user prefers a song with a hype level of 0.4, we want to find the value that is closest to 0.4, instead of trying to match a song with a general low hype level.
-
-The most important characteristics are the genre, mood, energy, and valence. The genre and mood allows the model to characterize songs more efficiently, as there is much less variance compared to numerical categories. The energy and valence allows the model to catch a distinction that mood alone can miss. Some songs can both be "chill," but still portray different moods, which valence measures. 
+**Potential biases:** genre's high weight can overshadow strong mood/energy matches, and exact string matching means `"chill"` and `"relaxed"` are treated as completely different moods.
 
 ---
 
